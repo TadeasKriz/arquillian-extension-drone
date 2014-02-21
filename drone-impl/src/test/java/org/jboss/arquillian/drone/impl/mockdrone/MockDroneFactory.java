@@ -16,8 +16,6 @@
  */
 package org.jboss.arquillian.drone.impl.mockdrone;
 
-import java.lang.annotation.Annotation;
-
 import org.jboss.arquillian.config.descriptor.api.ArquillianDescriptor;
 import org.jboss.arquillian.drone.spi.Configurator;
 import org.jboss.arquillian.drone.spi.Destructor;
@@ -26,13 +24,13 @@ import org.jboss.arquillian.drone.spi.Instantiator;
 
 /**
  * @author <a href="kpiwko@redhat.com>Karel Piwko</a>
- * 
+ *
  */
 public class MockDroneFactory implements Configurator<MockDrone, MockDroneConfiguration>,
         Instantiator<MockDrone, MockDroneConfiguration>, Destructor<MockDrone> {
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.jboss.arquillian.drone.spi.Sortable#getPrecedence()
      */
     public int getPrecedence() {
@@ -46,7 +44,7 @@ public class MockDroneFactory implements Configurator<MockDrone, MockDroneConfig
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.jboss.arquillian.drone.spi.Destructor#destroyInstance(java.lang.Object)
      */
     public void destroyInstance(MockDrone instance) {
@@ -54,7 +52,7 @@ public class MockDroneFactory implements Configurator<MockDrone, MockDroneConfig
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.jboss.arquillian.drone.spi.Instantiator#createInstance(org.jboss.arquillian.drone.spi.DroneConfiguration)
      */
     public MockDrone createInstance(MockDroneConfiguration configuration) {

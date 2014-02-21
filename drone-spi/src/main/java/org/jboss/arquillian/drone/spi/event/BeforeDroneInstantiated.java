@@ -16,14 +16,14 @@
  */
 package org.jboss.arquillian.drone.spi.event;
 
+import java.util.concurrent.Callable;
+
 import org.jboss.arquillian.drone.spi.CachingCallable;
 import org.jboss.arquillian.drone.spi.InjectionPoint;
-import org.jboss.arquillian.drone.spi.InstanceOrCallableInstance;
 import org.jboss.arquillian.drone.spi.Instantiator;
 
 /**
- * This event is fired before Drone {@link Callable} is transformed into real instance via {@link Instantiator}. It
- * is supposed
+ * This event is fired before Drone {@link Callable} is transformed into real instance via {@link Instantiator}. It is supposed
  * that it will always contain a {@link Callable} instance.
  *
  * @author <a href="mailto:kpiwko@redhat.com">Karel Piwko</a>

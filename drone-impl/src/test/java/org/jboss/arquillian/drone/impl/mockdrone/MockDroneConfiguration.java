@@ -28,7 +28,7 @@ public class MockDroneConfiguration implements DroneConfiguration<MockDroneConfi
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.jboss.arquillian.drone.spi.DroneConfiguration#getConfigurationName()
      */
     public String getConfigurationName() {
@@ -37,7 +37,7 @@ public class MockDroneConfiguration implements DroneConfiguration<MockDroneConfi
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see
      * org.jboss.arquillian.drone.spi.DroneConfiguration#configure(org.jboss.arquillian.impl.configuration.api.ArquillianDescriptor
      * , java.lang.Class)

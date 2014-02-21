@@ -22,9 +22,7 @@ import java.net.URL;
 import java.util.Map;
 
 import org.jboss.arquillian.config.descriptor.api.ArquillianDescriptor;
-import org.jboss.arquillian.drone.api.annotation.Qualifier;
 import org.jboss.arquillian.drone.spi.DroneConfiguration;
-import org.jboss.arquillian.drone.spi.InjectionPoint;
 
 /**
  * Sample configuration

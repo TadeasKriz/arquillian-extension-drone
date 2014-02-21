@@ -16,11 +16,10 @@
  */
 package org.jboss.arquillian.drone.spi.event;
 
-import java.lang.annotation.Annotation;
+import java.util.concurrent.Callable;
 
 import org.jboss.arquillian.drone.spi.DroneConfiguration;
 import org.jboss.arquillian.drone.spi.InjectionPoint;
-import org.jboss.arquillian.drone.spi.InstanceOrCallableInstance;
 
 /**
  * This event is called after Drone configuration is created. By observing this event, you can modify Drone configuration after

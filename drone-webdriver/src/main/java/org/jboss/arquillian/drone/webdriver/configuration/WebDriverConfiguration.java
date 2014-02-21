@@ -27,7 +27,6 @@ import java.util.logging.Logger;
 import org.jboss.arquillian.config.descriptor.api.ArquillianDescriptor;
 import org.jboss.arquillian.drone.configuration.ConfigurationMapper;
 import org.jboss.arquillian.drone.spi.DroneConfiguration;
-import org.jboss.arquillian.drone.spi.InjectionPoint;
 import org.jboss.arquillian.drone.webdriver.factory.BrowserCapabilitiesList;
 import org.jboss.arquillian.drone.webdriver.spi.BrowserCapabilities;
 import org.openqa.selenium.Capabilities;
@@ -183,9 +182,10 @@ public class WebDriverConfiguration implements DroneConfiguration<WebDriverConfi
         // ARQ-1022, we need to check if we haven't overriden original browser
         // capabilities in an incompatible way
         if (_originalBrowser != null && !_originalBrowser.equals(this.browser)) {
-            log.log(Level.WARNING,
-                    "Arquillian configuration is specifying a Drone of type {0}, however test class specifically asked for {1}. As Drone cannot guarantee that those two are compatible, \"browser\" property will be set to {1}.",
-                    new Object[] { browser, _originalBrowser });
+            log.log(
+                Level.WARNING,
+                "Arquillian configuration is specifying a Drone of type {0}, however test class specifically asked for {1}. As Drone cannot guarantee that those two are compatible, \"browser\" property will be set to {1}.",
+                new Object[] { browser, _originalBrowser });
             this.browser = _originalBrowser;
         }
         return this;
@@ -231,9 +231,9 @@ public class WebDriverConfiguration implements DroneConfiguration<WebDriverConfi
         // return a merge of original capability plus capabilities user has specified in configuration
         // safely ignore null value here
         return new DesiredCapabilities(new DesiredCapabilities(
-                _browser.getRawCapabilities() == null ? new HashMap<String, Object>()
-                        : _browser.getRawCapabilities()),
-                new DesiredCapabilities(this.capabilityMap));
+            _browser.getRawCapabilities() == null ? new HashMap<String, Object>()
+                : _browser.getRawCapabilities()),
+            new DesiredCapabilities(this.capabilityMap));
     }
 
     @Deprecated

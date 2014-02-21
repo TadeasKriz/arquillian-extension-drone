@@ -45,9 +45,8 @@ public interface DroneContext {
      */
     <T> T getDrone(InjectionPoint<T> injectionPoint) throws IllegalStateException;
 
-    <C extends DroneConfiguration<C>> C getDroneConfiguration(InjectionPoint<?> injectionPoint,
-                                                              Class<C> configurationClass) throws
-            IllegalArgumentException;
+    <C extends DroneConfiguration<C>> C getDroneConfiguration(InjectionPoint<?> injectionPoint, Class<C> configuration)
+        throws IllegalArgumentException;
 
     /**
      *
@@ -59,7 +58,7 @@ public interface DroneContext {
     <T> void storeFutureDrone(InjectionPoint<T> injectionPoint, CachingCallable<T> drone);
 
     <T, C extends DroneConfiguration<C>> void storeDroneConfiguration(InjectionPoint<T> injectionPoint,
-                                                                      C configuration);
+        C configuration);
 
     <T> boolean isDroneInstantiated(InjectionPoint<T> injectionPoint);
 
@@ -85,5 +84,8 @@ public interface DroneContext {
     <T> InjectionPoint<? extends T> findSingle(Class<T> droneClass, Filter... filters) throws IllegalStateException;
 
     <T> List<InjectionPoint<? extends T>> find(Class<T> droneClass, Filter... filters);
-}
 
+    List<InjectionPoint<?>> findAll();
+
+    <T, C extends DroneConfiguration<C>> List<InjectionPoint<T>> find(DroneConfiguration<C> configuration);
+}

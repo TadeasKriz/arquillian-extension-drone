@@ -16,7 +16,6 @@
  */
 package org.jboss.arquillian.drone.webdriver.factory;
 
-import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
