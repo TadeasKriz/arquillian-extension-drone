@@ -25,7 +25,6 @@ import org.jboss.arquillian.drone.webdriver.configuration.WebDriverConfiguration
 import org.openqa.selenium.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;

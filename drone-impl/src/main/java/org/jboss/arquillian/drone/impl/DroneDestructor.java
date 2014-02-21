@@ -16,6 +16,12 @@
  */
 package org.jboss.arquillian.drone.impl;
 
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
+
 import org.jboss.arquillian.container.spi.event.container.BeforeUnDeploy;
 import org.jboss.arquillian.core.api.Event;
 import org.jboss.arquillian.core.api.Instance;
@@ -28,16 +34,11 @@ import org.jboss.arquillian.drone.spi.DroneRegistry;
 import org.jboss.arquillian.drone.spi.InjectionPoint;
 import org.jboss.arquillian.drone.spi.event.AfterDroneDestroyed;
 import org.jboss.arquillian.drone.spi.event.BeforeDroneDestroyed;
+import org.jboss.arquillian.drone.spi.event.DestroyDroneEvent;
 import org.jboss.arquillian.drone.spi.event.DroneLifecycleEvent;
 import org.jboss.arquillian.drone.spi.filter.DeploymentFilter;
 import org.jboss.arquillian.test.spi.event.suite.After;
 import org.jboss.arquillian.test.spi.event.suite.AfterClass;
-
-import java.lang.reflect.Method;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Pattern;
 
 /**
  * Destructor of Drone instance. Disposes both class scoped Drones as well as method scoped ones.
@@ -105,7 +106,7 @@ public class DroneDestructor {
         List<InjectionPoint<?>> injectionPoints = context.find(Object.class, deploymentFilter);
 
         for (InjectionPoint<?> injectionPoint : injectionPoints) {
-            destroyDrone(injectionPoint);
+            droneLifecycleEvent.fire(new DestroyDroneEvent(injectionPoint));
         }
 
     }
@@ -115,13 +116,17 @@ public class DroneDestructor {
         List<InjectionPoint<?>> injectionPoints = InjectionPoints.allInClass(cls);
 
         for (InjectionPoint<?> injectionPoint : injectionPoints) {
-            /* FIXME add this after suite scoped drones are added
-            if(injectionPoint.getScope() == SUITE) {
-
-                continue;
-            }*/
-            destroyDrone(injectionPoint);
+            /*
+             * FIXME add this after suite scoped drones are added if(injectionPoint.getScope() == SUITE) {
+             *
+             * continue; }
+             */
+            droneLifecycleEvent.fire(new DestroyDroneEvent(injectionPoint));
         }
+    }
+
+    public void destroyDrone(@Observes DestroyDroneEvent event) {
+        destroyDrone(event.getInjectionPoint());
     }
 
     private void destroyDrone(InjectionPoint<?> injectionPoint) {
@@ -152,7 +157,7 @@ public class DroneDestructor {
         if (log.isLoggable(Level.FINER)) {
             // FIXME possible nullpointerexception?
             log.fine("Using destructor defined in class: " + destructor.getClass().getName() + ", with precedence "
-                    + destructor.getPrecedence());
+                + destructor.getPrecedence());
         }
 
         return destructor;

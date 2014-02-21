@@ -16,11 +16,10 @@
  */
 package org.jboss.arquillian.drone.spi.event;
 
-import java.lang.annotation.Annotation;
+import java.util.concurrent.Callable;
 
 import org.jboss.arquillian.drone.spi.DroneInstanceEnhancer;
 import org.jboss.arquillian.drone.spi.InjectionPoint;
-import org.jboss.arquillian.drone.spi.InstanceOrCallableInstance;
 
 /**
  * This event is called before Drone instance in deenhanced. It is expected that it will never contain a {@link Callable} Drone,
